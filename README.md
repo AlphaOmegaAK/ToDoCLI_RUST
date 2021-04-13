@@ -8,8 +8,8 @@ Had an urge to try and learn a bit of Rust as there's a great interest in the co
 
 #### Sprint 1
 
-* [] Create New Project
-* [] Collect CL Arguments into Vector
+* [x] Create New Project
+* [x] Collect CL Arguments into Vector
 * [] Store User Inputs
 * [] Start with a List of Tasks 
 * [] Create an Empty List 
