@@ -31,26 +31,61 @@ Had an urge to try and learn a bit of Rust as there's a great interest in the co
  
 
  ``` let args: Vec<String> = env::args().collect();  ```
-
- - Type cannot be inferred so Vector of type String is used 
+ 
+ - Type cannot be inferred so Vector of type String is used
 
  ```
  println!("{:#?}", variableToPrint);
 
 
  prinln!("{:$?}", args); 
- 
  ```
- - :#? = Debug mode
  
+
+	- :#? = Debug mode
  
- - Prints the arguments when *cargo run main.rs* executed
+	- Prints the arguments when *cargo run main.rs* executed
  
  To be able to print variables, need to use double quote+curly braces followed
  by comma separated variables
 
  ```
  let command = args[1].clone(); 
- 
  ```
-Copies the argument in memory 
+ 
+- Copies the argument in memory 
+
+---
+Create a new structure(class) for ToDo items
+```
+struct ToDoItem {
+	name: String,
+	completed: char
+};
+```
+
+Instantiate the new Data Type(object)
+```
+let todo_item = ToDoItem {
+	name: "hello world".to_string(),
+	completed: ' '
+};
+```
+
+- "hello world" alone is a str(static string); needs to be converted to a String type. Rust has two different String types
+
+
+
+```
+let todo_list = vec![todo_item];
+```
+Create a Vector(array) with type (ToDoItem) todo_item
+'vec![]' is shorthand for creating a Vectors easily
+
+```
+for item in todo_list {
+	println!("[{} - {}", item.completed, item.name]);
+}
+```
+Rust's version of for loop to cycle through Vector list of todo_items
+
