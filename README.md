@@ -1,16 +1,16 @@
 # Making a Todo CLI in Rust
 ---
 
-Had an urge to try and learn a bit of Rust as there's a great interest in the community to rewrite CLI programs to Rust. Also I wanted to create my own task management CLI application to fit in with my GUI-less workflow tailored to my liking.
+Had an urge to try and learn a bit of Rust as there's a great interest in the community to rewrite CLI programs to Rust. Also I wanted to create my own task management CLI application to better integrate with GUI/Mouse-less workflow.
 
 ---
-**To Do**
+## Progress
 
 #### Sprint 1
 
 * [x] Create New Project
-* [x] Collect CL Arguments into Vector
-* [] Store User Inputs
+* [x] Collect CLI Arguments into Vector
+* [x] Store User Inputs
 * [] Start with a List of Tasks 
 * [] Create an Empty List 
 * [] Seed List with Empty Data
@@ -26,5 +26,31 @@ Had an urge to try and learn a bit of Rust as there's a great interest in the co
 * [] Write Task to File
 * [] Read Task from File
 * [] Project-based Grouping
+* [] No Command Default Case
 * [] Color?
+ 
 
+ ``` let args: Vec<String> = env::args().collect();  ```
+
+ - Type cannot be inferred so Vector of type String is used 
+
+ ```
+ println!("{:#?}", variableToPrint);
+
+
+ prinln!("{:$?}", args); 
+ 
+ ```
+ - :#? = Debug mode
+ 
+ 
+ - Prints the arguments when *cargo run main.rs* executed
+ 
+ To be able to print variables, need to use double quote+curly braces followed
+ by comma separated variables
+
+ ```
+ let command = args[1].clone(); 
+ 
+ ```
+Copies the argument in memory 
