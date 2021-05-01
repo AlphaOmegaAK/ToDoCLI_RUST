@@ -11,9 +11,9 @@ Had an urge to try and learn a bit of Rust as there's a great interest in the co
 * [x] Create New Project
 * [x] Collect CLI Arguments into Vector
 * [x] Store User Inputs
-* [] Start with a List of Tasks 
-* [] Create an Empty List 
-* [] Seed List with Empty Data
+* [x] Start with a List of Tasks 
+* [x] Create an Empty List 
+* [x] Seed List with Empty Data
 * [] List All Tasks
 * [] Add New Task
 * [] Mark Task as Complete
@@ -88,4 +88,56 @@ for item in todo_list {
 }
 ```
 Rust's version of for loop to cycle through Vector list of todo_items
+
+---
+### Refactor
+
+```
+impl ToDoItem {
+	fn new(new_name: String) -> ToDoItem {
+		return ToDoItem {
+			name: new_name,
+			completed: ' '
+		}
+	}
+}
+```
+Function to handle seed multiple items
+
+***impl*** : implement some functionality to a type; Primarily used to define implementations on types
+
+***fn***: function keyword 
+
+***new***: Function name; Rust doesn't have its new keyword so possible to implement  your own
+
+***(new_name: String)*** Have to give the type for function params manually
+
+***->***: Tells what the return type is going to be
+
+```
+return ToDoItem {  
+	name: new_name,
+	completed: ' '
+} 
+```  
+Returns a ToDoItem obj with new_name passed in for todo_item.name property + not completed 
+
+```
+let todo_item_1 = ToDoItem::new("Hello World".to_string());
+```
+Now to use the function refactor todo_item declaration that was previously :
+``` let todo_item = "Hello World".to_string();
+```
+
+becomes:
+
+```
+let todo_item_1 = ToDoItem::new("Hello World".to_string());
+```
+
+***ToDoItem::new()***
+	
+ - type::method, Specifies from where a method came from; removes uncertainty from a method call by using the type from which it was declared.
+ 
+
 
