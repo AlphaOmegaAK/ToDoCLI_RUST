@@ -219,8 +219,27 @@ impl ToDoList {
 	
 	fn print(&self) {
 		for item in &self.list {
-			println!("[{} - {}]", item.completed, item.name);
+			println!("[{}] - {}", item.completed, item.name);
 		}
 	}
 }
 ```
+
+
+
+## Double Colons - Dot Operator
+Using double colons doesn't allow access to self
+Using dot operator gives access to self
+
+---
+Add command : "add" (Simple)
+```
+if command == "get" {
+	todo_list.print();
+} else if command == "add" {
+	let task = args[2].clone(); // Creates a copy
+	todo_list.add_to_list(task);
+	todo_list.print();
+}
+```
+

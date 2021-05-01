@@ -50,7 +50,12 @@ fn main() {
      // TODO:if statement to check the length of args to avoid index-out-of-bounds
     if command == "get" {
         todo_list.print();
-        }
+    } else if command == "add" {
+        let task = args[2].clone();
+
+        todo_list.add_to_list(task);
+        todo_list.print();
+    }
            
 
 
