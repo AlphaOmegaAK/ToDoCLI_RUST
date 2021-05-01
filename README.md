@@ -210,3 +210,17 @@ and use ToDoList.add_to_list() method
 todo_list.add_to_list("Hello World".to_string());
 ```
 
+---
+Refactor Print Function from main fn
+```
+impl ToDoList {
+	fn new { ... }
+	fn add_to_list{ ... }
+	
+	fn print(&self) {
+		for item in &self.list {
+			println!("[{} - {}]", item.completed, item.name);
+		}
+	}
+}
+```
