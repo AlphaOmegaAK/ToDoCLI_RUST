@@ -14,7 +14,7 @@ Had an urge to try and learn a bit of Rust as there's a great interest in the co
 * [x] Start with a List of Tasks 
 * [x] Create an Empty List 
 * [x] Seed List with Empty Data
-* [] List All Tasks
+* [x] List All Tasks
 * [] Add New Task
 * [] Mark Task as Complete
 	* [] Un-mark a Task
@@ -104,7 +104,9 @@ impl ToDoItem {
 ```
 Function to handle seed multiple items
 
-***impl*** : implement some functionality to a type; Primarily used to define implementations on types
+***impl*** : implement some functionality to a type; Primarily used to define implementations on types 
+
+- assigns the fn new() to struct ToDoItem, by saying ToDoItem implements *this* function 
 
 ***fn***: function keyword 
 
@@ -137,7 +139,48 @@ let todo_item_1 = ToDoItem::new("Hello World".to_string());
 
 ***ToDoItem::new()***
 	
- - type::method, Specifies from where a method came from; removes uncertainty from a method call by using the type from which it was declared.
+ - type::method, Specifies from where a method came from; removes uncertainty from a method call by using the type from which it was defined.
  
+---
 
+``` 
+struct ToDoList {
+	list: Vec<ToDoItem>
+}
+impl ToDoList {
+	fn new() -> ToDoList {
+		return ToDoList{list: vec![]};
+		or
+		return ToDoList{list: Vec::new()};
+	}
+}
+```
+
+New Struct : ToDoList that has a property of list which hold ToDoList types
+
+ToDoList implements a function of new as well that returns a empty ToDoList
+ 
+Refactor/Declare ToDoList::new() to instantiate a new list: 
+
+```
+let todo_list = ToDoList::new();
+```
+---
+Function to add new ToDoItems to ToDoList
+```
+// impl ToDoList.. 
+	fn new(){ ... }
+
+	fn add_to_list(&mut self, name: String) {
+		let todo_item = ToDoItem::new(name);
+		self.list.push(todo_item);
+	}
+}
+```
+
+self : (this in javascript/java, etc)  the context in which a method/variable/state is called
+
+mut: specifies that it is a mutable variable, default for variables in Rust are immutable
+
+&: says to use a reference, in this context a reference to itself so that the context of self isn't copied and destroyed but instead use its reference in memory
 
