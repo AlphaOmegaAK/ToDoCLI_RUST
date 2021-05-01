@@ -184,3 +184,29 @@ mut: specifies that it is a mutable variable, default for variables in Rust are 
 
 &: says to use a reference, in this context a reference to itself so that the context of self isn't copied and destroyed but instead use its reference in memory
 
+---
+Implementing ToDoList.add_to_list(ToDoItem_n);
+
+**Note**
+
+Since variables in Rust are immutable by default, and ToDoItems are now going to be added removed and manipulated; the variable declaration of todo_list has to be specified as mutable:
+
+```
+let todo_list = ToDoList::new();
+
+*becomes*
+
+let mut todo_list = ToDoList::new();
+```
+
+Can now remove the manual declarations of TodoItem todo_item_n can be removed :
+```
+let todo_item_1 = ToDoItem::new("Hello World".to_strng());
+```
+and use ToDoList.add_to_list() method
+
+**Note** : add_to_list() expects a struct to be passed into it so creating a new ToDoItem is no longer necessary; only have to pass in the name of the task itself:
+```
+todo_list.add_to_list("Hello World".to_string());
+```
+
