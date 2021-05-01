@@ -37,26 +37,32 @@ impl ToDoList {
 
 }
 
+enum Command {
+    get,
+    add(String)
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     //println!("{:#?}", args);
-    let command = args[1].clone();
-
     let mut todo_list = ToDoList::new();
 
+    let command = match args[1].as_str() { // lowercase of Command; it's an instance 
+        "get" => Command::get,
+        "add" => Command::add(args[2].clone()),
+        _ => panic!("Must provide a command")
+    };
     todo_list.add_to_list("Hello World".to_string());
     todo_list.add_to_list("Good bye".to_string());
 
-     // TODO:if statement to check the length of args to avoid index-out-of-bounds
-    if command == "get" {
-        todo_list.print();
-    } else if command == "add" {
-        let task = args[2].clone();
+    match command {
+        Command::get => todo_list.print(),
+        Command::add(task) => {
+            todo_list.add_to_list(task);
+            todo_list.print();
+        },
 
-        todo_list.add_to_list(task);
-        todo_list.print();
-    }
+    } 
            
-
 
 }

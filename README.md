@@ -242,4 +242,43 @@ if command == "get" {
 	todo_list.print();
 }
 ```
+---
+Switching from an If-Else Statement to a Match (Rust's Switch Statement)
+
+**Note** Have to create an Enum because if trying to match like a switch works in languages like Java/Javascript it will create an error of mismatched types; due how Rust handles hard-coding Strings : they are a reference to that String: they aren't full Strings 
+
+#### Creating an Enum
+
+```
+Enum Command {
+	get,
+	add(String)
+}
+```
+
+In main we will now match the Enum to the command [args] passed in when CL run:
+
+```
+let command = match args[1].as_str() {
+	"get" => Command::get,
+	"add" => Command.add(String),
+	_ => panic!("Must provide a command")
+};
+```
+- command : lowercase because its going to be an match off the instance of the Enum
+- .as_str() : a reference to the args
+- _=> : is a catch all
+
+Implement the command:
+```
+match command {
+	Command::get => todo_list.print(),
+	Command::add(task) => {
+		todo_list.add_to_list(task);
+		todo_list.print();
+	}
+}
+```
+
+
 
