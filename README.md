@@ -326,7 +326,7 @@ enum Command {
 	Get,
 	Add(String),}
 	Done(usize), 
-	NotDone(usize)
+	Undo(usize)
 ```
 - Unsigned 32-bit integer value will bring up a conversion step, usize does the intended job + no conversion needed to specify memory location
 
@@ -365,3 +365,43 @@ match command {
 
 **Command::Done(args[2].parse().expect("Error Converting to Integer))
 
+## Deleting Tasks
+
+```
+impl ToDoList {
+	fn new() { ... };
+	fn new() { ... }
+	fn add_to_list() { ... }
+	fn mark_completed() { ... }
+	fn print() { ... }
+	
+	fn delete_task(&mut self, index: usize) {
+		self.list.remove(index);
+	}
+}
+```
+
+```
+enum Command {
+	Get,
+	Add(String),}
+	Done(usize), 
+	Undo(usize),
+	Delete(usize)
+}
+```
+
+
+```
+match command {
+	Command::Get ...,
+	Command::Add() ...,
+	Command::Done(index) { ... },
+	Command::Undo(index) => { ... },
+	Command::Delete(index) => {
+		todo_list.delete_task(index);
+		todo_list.print();
+	}
+}
+```
+- Simple removing from vec (array/arraylist in javascript/java etc)

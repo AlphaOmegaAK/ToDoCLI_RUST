@@ -43,6 +43,10 @@ impl ToDoList {
         }
     }
 
+    fn delete_task(&mut self, index: usize) {
+        self.list.remove(index);
+    }
+ 
 
 }
 
@@ -50,7 +54,8 @@ enum Command {
     Get,
     Add(String),
     Done(usize),
-    Undo(usize)
+    Undo(usize),
+    Delete(usize)
 }
 
 fn main() {
@@ -63,6 +68,7 @@ fn main() {
         "add" => Command::Add(args[2].clone()),
         "done" => Command::Done(args[2].parse().expect("Error Converting To Integer")),
         "undo" => Command::Undo(args[2].parse().expect("Can't mark not done")),
+        "delete" => Command::Delete(args[2].parse().expect("Error Parsing Command: Delete")),
         _ => panic!("Must provide a command")
     };
     todo_list.add_to_list("Hello World".to_string());
@@ -82,6 +88,10 @@ fn main() {
         Command::Undo(index) => {
             todo_list.mark_completed(index);
             todo_list.print(); 
+        },
+        Command::Delete(index) => {
+            todo_list.delete_task(index);
+            todo_list.print();
         }
     } 
            
