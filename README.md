@@ -15,9 +15,9 @@ Had an urge to try and learn a bit of Rust as there's a great interest in the co
 * [x] Create an Empty List 
 * [x] Seed List with Empty Data
 * [x] List All Tasks
-* [] Add New Task
-* [] Mark Task as Complete
-	* [] Un-mark a Task
+* [x] Add New Task
+* [x] Mark Task as Complete
+	* [x] Un-mark a Task
 * [] Remove/Delete a Task
 * [] Build for Production
  
@@ -280,5 +280,88 @@ match command {
 }
 ```
 
-t
+## Task - Done() + Undo(): Task Complete/Un-Complete 
+
+- Need to iterate over the list of tasks + get current iterations index + value:
+
+```
+impl ToDoList {
+	fn new() { ... }
+	fn add_to_list() { ... }
+
+	fn mark_completed(&mut self, index: usize) {
+		if self.list[index].completed = ' ' {
+			self.list[index].completed = 'x';
+		} else {
+			self.list[index].completed = ' ';
+		}
+	}
+	
+	fn print() { ... }
+}
+```
+**Note** :Convert u32 types to usize to skip later conversion/specifying memory size
+
+- *mark_completed* : checks if the task.completed is empty or with x and handles accordingly (will be used to unmark task aswell)
+
+
+
+```
+impl ToDoList {
+	fn new() { ... }
+	fn add_to_list() { ... }
+	fn mark_completed() { ... }
+	fn print(&self) {
+		for (index, item) in self.list.iter().enumerate() {
+			println("{} [{}] - {}, index, item.completed, item.name)
+		}
+	} 
+}
+```
+- *for (index, item)* : To return two values off an interation : use tuple
+
+
+```
+enum Command {
+	Get,
+	Add(String),}
+	Done(usize), 
+	NotDone(usize)
+```
+- Unsigned 32-bit integer value will bring up a conversion step, usize does the intended job + no conversion needed to specify memory location
+
+```
+fn main() {
+	...
+	let command = match.args[1].as_str() {
+		"get" ...,
+		"add" ...,
+		"done" => Command::Done(args[2].parse().expect("Error Converting to Integer")),
+		"undo" => Command::Undo(args[2].parse().expect("Error Undoing Task")),
+		_panic ...
+	}
+	...
+	...
+}
+```
+
+```
+match command {
+	Command::Get ...,
+	Command::Add() ...,
+	Command::Done(index) {
+		todo_list.mark_completed(index);
+		todo_list.print();
+	},
+	Command::Undo(index) => {
+		todo_list.mark_completed(index);
+		todo_list.print();
+	}
+}
+```
+
+
+*Command::Done(args[2].parse().unwrap())* : unwrap() - if there is an error in parsing the String into a number then crash + print error
+
+**Command::Done(args[2].parse().expect("Error Converting to Integer))
 
