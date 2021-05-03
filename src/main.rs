@@ -38,8 +38,8 @@ impl ToDoList {
 }
 
 enum Command {
-    get,
-    add(String)
+    Get,
+    Add(String)
 }
 
 fn main() {
@@ -48,16 +48,16 @@ fn main() {
     let mut todo_list = ToDoList::new();
 
     let command = match args[1].as_str() { // lowercase of Command; it's an instance 
-        "get" => Command::get,
-        "add" => Command::add(args[2].clone()),
+        "get" => Command::Get,
+        "add" => Command::Add(args[2].clone()),
         _ => panic!("Must provide a command")
     };
     todo_list.add_to_list("Hello World".to_string());
     todo_list.add_to_list("Good bye".to_string());
 
     match command {
-        Command::get => todo_list.print(),
-        Command::add(task) => {
+        Command::Get => todo_list.print(),
+        Command::Add(task) => {
             todo_list.add_to_list(task);
             todo_list.print();
         },
